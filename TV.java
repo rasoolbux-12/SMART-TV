@@ -1,7 +1,7 @@
 package ProjectOOP;
 import java.util.Scanner;
 
-// Composition: Screen is PART OF Television (destroyed with TV)
+// Composition
 class Screen {
     private String resolution;
     private double screenSize;
@@ -32,7 +32,7 @@ class Screen {
     }
 }
 
-// Aggregation: RemoteControl is SEPARATE (can work without TV)
+// Aggregation
 class RemoteControl {
     private int currentChannel = 1;
     private int volume = 10;
@@ -108,7 +108,7 @@ class RemoteControl {
     }
 }
 
-// Parent Class: ElectronicAppliance
+// Parent Class
 class ElectronicAppliance {
     private String brand;
 
@@ -125,7 +125,7 @@ class ElectronicAppliance {
     }
 }
 
-// Child Class: Television
+// Child Class
 class Television extends ElectronicAppliance {
     protected Screen screen;
     protected RemoteControl remote;
@@ -162,13 +162,13 @@ class Television extends ElectronicAppliance {
     }
 }
 
-// Threading: Background updates (moved as is)
+// Threading
 class SoftwareUpdate implements Runnable {
     @Override
     public synchronized void run() {
         System.out.println("Checking for updates...");
         try {
-            Thread.sleep(3000); // Simulate time delay
+            Thread.sleep(3000); 
         } catch (InterruptedException e) {
             System.out.println("Update interrupted!");
         }
@@ -176,15 +176,15 @@ class SoftwareUpdate implements Runnable {
     }
 }
 
-// Child Class: SmartTV extends Television and includes SoftwareUpdate via composition
+// Child Class
 class SmartTV extends Television {
     private boolean internetConnected;
-    private SoftwareUpdate softwareUpdate; // Composition
+    private SoftwareUpdate softwareUpdate; 
 
     public SmartTV(String brand, Screen screen, RemoteControl remote) {
         super(brand, screen, remote);
         this.internetConnected = false;
-        this.softwareUpdate = new SoftwareUpdate(); // initialized here
+        this.softwareUpdate = new SoftwareUpdate(); 
     }
 
     public void connectToInternet() {
@@ -241,7 +241,7 @@ public class TV {
 
             System.out.print("Your choice: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            scanner.nextLine(); 
 
             switch (choice) {
                 case 1:
@@ -273,7 +273,7 @@ public class TV {
                     remote.toggleMute();
                     break;
                 case 9:
-                    myTV.checkForSoftwareUpdate(); // Now handled by SmartTV
+                    myTV.checkForSoftwareUpdate(); 
                     break;
                 case 0:
                     running = false;
